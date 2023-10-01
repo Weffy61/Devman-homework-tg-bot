@@ -1,6 +1,5 @@
 import time
 import requests
-import pprint
 from environs import Env
 import telegram
 
@@ -20,7 +19,6 @@ def devman_api(api_key, tg_token, chat_id):
             }
             response = requests.get(url_long_pooling, headers=headers, params=payload, timeout=100)
             response.raise_for_status()
-            pprint.pprint(response.json())
             if response.json()["status"] == "timeout":
                 timestamp = response.json()["timestamp_to_request"]
             elif response.json()["status"] == "found":
