@@ -54,7 +54,7 @@ def main():
     env.read_env()
     devman_key = env.str('DEVMAN_API_KEY')
     telegram_token = env.str('TELEGRAM_TOKEN')
-    chat_id = env.int('CHAT_ID')
+    chat_id = env.int('TELEGRAM_CHAT_ID')
     devman_api(devman_key, telegram_token, chat_id)
 
 

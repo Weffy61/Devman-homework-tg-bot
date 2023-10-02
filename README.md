@@ -27,7 +27,7 @@ pip install -r requirements.txt
 Доступны следующие переменные:
  - DEVMAN_API_KEY - ваш devman API ключ 
  - TELEGRAM_TOKEN - ваш телеграм бот API ключ
- - CHAT_ID - ваш telegram id. Для получаения отпишите в [бота](https://telegram.me/userinfobot).
+ - TELEGRAM_CHAT_ID - ваш telegram id. Для получаения отпишите в [бота](https://telegram.me/userinfobot).
  
 ## Запуск
 
