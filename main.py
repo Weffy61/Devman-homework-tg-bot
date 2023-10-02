@@ -4,7 +4,7 @@ from environs import Env
 import telegram
 
 
-def devman_api(api_key, tg_token, chat_id):
+def send_notification(api_key, tg_token, chat_id):
     timestamp = ''
     headers = {
         'Authorization': f'Token {api_key}'
@@ -50,7 +50,7 @@ def main():
     devman_key = env.str('DEVMAN_API_KEY')
     telegram_token = env.str('TELEGRAM_TOKEN')
     chat_id = env.int('TELEGRAM_CHAT_ID')
-    devman_api(devman_key, telegram_token, chat_id)
+    send_notification(devman_key, telegram_token, chat_id)
 
 
 if __name__ == '__main__':
