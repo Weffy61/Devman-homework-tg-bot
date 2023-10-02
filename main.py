@@ -11,7 +11,7 @@ def devman_api(api_key, tg_token, chat_id):
     }
 
     url_long_pooling = 'https://dvmn.org/api/long_polling/'
-
+    bot = telegram.Bot(token=tg_token)
     while True:
         try:
             payload = {
@@ -23,7 +23,7 @@ def devman_api(api_key, tg_token, chat_id):
                 timestamp = response.json()["timestamp_to_request"]
             elif response.json()["status"] == "found":
                 message = prepare_message(response.json())
-                send_tg_message(tg_token, message, chat_id)
+                bot.send_message(chat_id=chat_id, text=message)
                 timestamp = response.json()["last_attempt_timestamp"]
 
         except requests.exceptions.ReadTimeout:
@@ -44,11 +44,6 @@ def prepare_message(response):
     return message
 
 
-def send_tg_message(tg_token, message, chat_id):
-    bot = telegram.Bot(token=tg_token)
-    bot.send_message(chat_id=chat_id, text=message)
-
-
 def main():
     env = Env()
     env.read_env()
@@ -60,5 +55,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
-
