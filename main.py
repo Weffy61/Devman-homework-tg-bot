@@ -2,6 +2,7 @@ import time
 import requests
 from environs import Env
 import telegram
+import textwrap
 
 
 def send_notification(api_key, tg_token, chat_id):
@@ -40,8 +41,11 @@ def prepare_message(response):
     result_of_checking = 'Преподавателю всё понравилось, можно приступать к следущему уроку!'
     if response['new_attempts'][0]['is_negative']:
         result_of_checking = 'К сожалению, в работе нашлись ошибки.'
-    message = f'У вас проверили работу "{lesson_title}"\nСсылка на урок "{lesson_url}"' \
-              f'\n{result_of_checking}'
+    message = textwrap.dedent(f'''
+    У вас проверили работу "{lesson_title}" 
+    Ссылка на урок "{lesson_url}"
+    {result_of_checking}
+    ''')
     return message
 
 
