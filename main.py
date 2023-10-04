@@ -20,13 +20,13 @@ def send_notification(api_key, tg_token, chat_id):
             }
             response = requests.get(url_long_pooling, headers=headers, params=payload, timeout=100)
             response.raise_for_status()
-            response_content = response.json()
-            if response_content["status"] == "timeout":
-                timestamp = response_content["timestamp_to_request"]
-            elif response_content["status"] == "found":
-                message = prepare_message(response_content)
+            devman_response = response.json()
+            if devman_response["status"] == "timeout":
+                timestamp = devman_response["timestamp_to_request"]
+            elif devman_response["status"] == "found":
+                message = prepare_message(devman_response)
                 bot.send_message(chat_id=chat_id, text=message)
-                timestamp = response_content["last_attempt_timestamp"]
+                timestamp = devman_response["last_attempt_timestamp"]
 
         except requests.exceptions.ReadTimeout:
             continue
