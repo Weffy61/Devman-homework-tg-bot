@@ -14,6 +14,7 @@ def send_notification(api_key, tg_token, chat_id):
 
     url_long_pooling = 'https://dvmn.org/api/long_polling/'
     bot = telegram.Bot(token=tg_token)
+    logging.info('bot started')
     while True:
         try:
             payload = {
