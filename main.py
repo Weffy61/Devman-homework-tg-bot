@@ -3,6 +3,7 @@ import requests
 from environs import Env
 import telegram
 import textwrap
+import logging
 
 
 def send_notification(api_key, tg_token, chat_id):
@@ -50,6 +51,7 @@ def prepare_message(response):
 
 
 def main():
+    logging.basicConfig(level=logging.DEBUG)
     env = Env()
     env.read_env()
     devman_key = env.str('DEVMAN_API_KEY')
