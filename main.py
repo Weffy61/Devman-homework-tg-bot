@@ -64,15 +64,17 @@ def send_notification(api_key, tg_token, chat_id):
             continue
         except (TelegramError, Unauthorized, BadRequest,
                 TimedOut, ChatMigrated, NetworkError, Exception) as e:
-            logger.error(f'Бот завершил работу с ошибкой: {e}')
-            break
+            logger.error(f'Бот завершил работу с ошибкой: {e}', exc_info=True)
+            logger.info('Бот будет перезапущен через 10 секунд')
+            time.sleep(10)
+            continue
 
 
 def prepare_message(response):
     lesson_title = response['new_attempts'][0]['lesson_title']
     lesson_url = response['new_attempts'][0]['lesson_url']
-    result_of_checking = 'Преподавателю всё понравилось, можно приступать' \
-                         ' к следущему уроку!'
+    result_of_checking = 'Преподавателю всё понравилось, можно приступать ' \
+                         'к следущему уроку!'
     if response['new_attempts'][0]['is_negative']:
         result_of_checking = 'К сожалению, в работе нашлись ошибки.'
     message = textwrap.dedent(f'''
