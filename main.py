@@ -5,8 +5,6 @@ import time
 import requests
 from environs import Env
 import telegram
-from telegram.error import (TelegramError, Unauthorized, BadRequest,
-                            TimedOut, ChatMigrated, NetworkError)
 
 
 logger = logging.getLogger('Telegram logger')
@@ -63,7 +61,7 @@ def send_notification(api_key, tg_token, chat_id):
             time.sleep(5)
             continue
         except Exception as e:
-            logger.error(f'Бот завершил работу с ошибкой: {e}', exc_info=True)
+            logger.exception(f'Бот завершил работу с ошибкой: {e}', exc_info=True)
             logger.info('Бот будет перезапущен через 10 секунд')
             time.sleep(10)
             continue
