@@ -62,8 +62,7 @@ def send_notification(api_key, tg_token, chat_id):
         except requests.exceptions.ConnectionError:
             time.sleep(5)
             continue
-        except (TelegramError, Unauthorized, BadRequest,
-                TimedOut, ChatMigrated, NetworkError, Exception) as e:
+        except Exception as e:
             logger.error(f'Бот завершил работу с ошибкой: {e}', exc_info=True)
             logger.info('Бот будет перезапущен через 10 секунд')
             time.sleep(10)
