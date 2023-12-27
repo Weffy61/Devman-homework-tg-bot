@@ -62,8 +62,8 @@ def send_notification(api_key, tg_token, chat_id):
             continue
         except Exception as e:
             logger.exception(f'Бот завершил работу с ошибкой: {e}', exc_info=True)
-            logger.info('Бот будет перезапущен через 10 секунд')
-            time.sleep(10)
+            logger.info('Бот будет перезапущен через 30 минут')
+            time.sleep(1800)
             continue
 
 
