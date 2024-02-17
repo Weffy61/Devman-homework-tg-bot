@@ -4,6 +4,9 @@
 
 ## Установка
 
+Python 3.10 должен быть уже установлен. Далее используйте `pip`(or `pip3`, если имеется конфликт с Python2) 
+для установки зависомостей:
+
 ```commandline
 git clone https://github.com/Weffy61/Devman-homework-tg-bot.git
 ```
